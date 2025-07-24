@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}Manage Book Requests{% endblock %}
+{% block content %}
+    <h1 class="mb-4">Pending Book Requests</h1>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead><tr><th>Request Date</th><th>Member</th><th>Book Title</th><th>Author</th><th>Actions</th></tr></thead>
+            <tbody>
+                {% for req in requests %}
+                <tr>
+                    <td>{{ req.request_date.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td>{{ req.username }}</td>
+                    <td>{{ req.title }}</td>
+                    <td>{{ req.author }}</td>
+                    <td>
+                        <div class="d-flex">
+                            <form action="{{ url_for('approve_request', request_id=req.id) }}" method="POST" class="me-2">
+                                <button type="submit" class="btn btn-success btn-sm" title="Approve & Issue"><i class="bi bi-check-lg"></i></button>
+                            </form>
+                            <form action="{{ url_for('deny_request', request_id=req.id) }}" method="POST">
+                                <button type="submit" class="btn btn-danger btn-sm" title="Deny"><i class="bi bi-x-lg"></i></button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="5" class="text-center">No pending requests.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

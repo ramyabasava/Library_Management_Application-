@@ -1,0 +1,62 @@
+/* --- Background Image Styling --- */
+body {
+    /* Set the path to your image */
+    background-image: url('../images/background.jpg'); 
+    
+    /* Make the background image cover the entire screen */
+    background-size: cover;
+    
+    /* Keep the background image fixed in place during scroll */
+    background-attachment: fixed; 
+    
+    /* Center the background image */
+    background-position: center; 
+    
+    /* Add a semi-transparent overlay to make text more readable */
+    /* A dark overlay (rgba(0, 0, 0, 0.5)) or a light one (rgba(255, 255, 255, 0.7)) works well */
+    background-blend-mode: multiply;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity (0.5) as needed */
+
+    /* The original padding for the fixed navbar */
+    padding-top: 80px; /* Increased from 70px to give the header more space */
+}
+
+/* --- Navbar / Header Styling --- */
+.navbar {
+    /* Increase the vertical padding inside the navbar to make it taller */
+    padding-top: 1rem;    /* 1rem is roughly 16px */
+    padding-bottom: 1rem;
+
+    /* Add a subtle shadow for a modern look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    /* Make the brand/logo text larger */
+    font-size: 1.5rem; /* Increased from the default size */
+}
+
+/* --- Main Content Styling --- */
+/* Add a background to the cards to make them stand out from the background image */
+.card {
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+    border: none; /* Remove default border for a cleaner look */
+}
+
+/* Style for the main container holding the page content */
+main.container {
+    background-color: rgba(255, 255, 255, 0.9); /* Give the main content area a light background */
+    border-radius: 8px;
+    padding: 2rem; /* Add more padding inside the main content block */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+
+/* --- Flash Message Styling (Unchanged) --- */
+.flash-messages {
+    position: fixed;
+    top: 90px; /* Adjusted to be below the new, taller header */
+    right: 20px;
+    z-index: 1050;
+    min-width: 300px;
+}

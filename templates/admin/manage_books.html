@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block title %}Manage Books{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <h3>Add New Book</h3>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('manage_books') }}">
+                    <div class="mb-3"><label for="title" class="form-label">Title</label><input type="text" class="form-control" id="title" name="title" required></div>
+                    <div class="mb-3"><label for="author" class="form-label">Author</label><input type="text" class="form-control" id="author" name="author" required></div>
+                    <div class="mb-3"><label for="isbn" class="form-label">ISBN</label><input type="text" class="form-control" id="isbn" name="isbn" required></div>
+                    <div class="mb-3"><label for="quantity" class="form-label">Quantity</label><input type="number" class="form-control" id="quantity" name="quantity" min="1" value="1" required></div>
+                    <button type="submit" class="btn btn-primary">Add Book</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h3>Book Inventory</h3>
+        <table class="table table-striped table-hover">
+            <thead><tr><th>Title</th><th>Author</th><th>ISBN</th><th>Available / Total</th><th>Actions</th></tr></thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.isbn }}</td>
+                    <td><span class="badge bg-{{ 'success' if book.quantity_available > 0 else 'danger' }}">{{ book.quantity_available }}</span> / {{ book.quantity }}</td>
+                    <td>
+                        <form action="{{ url_for('delete_book', book_id=book.id) }}" method="POST" onsubmit="return confirm('Are you sure?');" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="bi bi-trash"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

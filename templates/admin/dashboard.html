@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+    <h1 class="mb-4">Admin Dashboard</h1>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header"><i class="bi bi-book"></i> Total Books</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ total_books }}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header"><i class="bi bi-people"></i> Total Members</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ total_members }}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-header"><i class="bi bi-hand-index-thumb"></i> Books Issued</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ issued_books }}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-info mb-3">
+                <div class="card-header"><i class="bi bi-clock-history"></i> Pending Requests</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ pending_requests }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

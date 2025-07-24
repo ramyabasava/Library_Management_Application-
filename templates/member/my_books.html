@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}My Borrowed Books{% endblock %}
+{% block content %}
+    <h1 class="mb-4">My Book History</h1>
+    <table class="table table-striped table-hover">
+        <thead><tr><th>Book Title</th><th>Issue Date</th><th>Due Date</th><th>Return Date</th><th>Status</th><th>Fine</th></tr></thead>
+        <tbody>
+            {% for trans in transactions %}
+            <tr>
+                <td>{{ trans.title }}</td>
+                <td>{{ trans.issue_date.strftime('%Y-%m-%d') }}</td>
+                <td>{{ trans.due_date.strftime('%Y-%m-%d') }}</td>
+                <td>{{ trans.return_date.strftime('%Y-%m-%d') if trans.return_date else 'Not Returned' }}</td>
+                <td>
+                    <span class="badge bg-{{ 'success' if trans.status == 'returned' else 'warning text-dark' }}">{{ trans.status }}</span>
+                </td>
+                <td>${{ "%.2f"|format(trans.fine) }}</td>
+            </tr>
+            {% else %}
+            <tr><td colspan="6" class="text-center">You have no book transaction history.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
